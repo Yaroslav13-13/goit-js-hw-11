@@ -4,14 +4,18 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const galleryContainer = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
 
-const lightbox = new SimpleLightbox('.gallery a');
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'title',
+  captionDelay: 250,
+  captionSelector: 'self',
+});
 
 export function createGallery(images) {
   const markup = images
     .map(image => {
       return `
         <li class="gallery-item">
-          <a href="${image.largeImageURL}">
+          <a href="${image.largeImageURL}" title="${image.tags}">
             <img src="${image.webformatURL}" alt="${image.tags}" />
           </a>
           <div class="info">
